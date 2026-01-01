@@ -69,7 +69,7 @@ jobs:
             repo: context.repo.repo,
           });
           
-          const release = releases.data.find(r => r.tag_name === 'node-ws-binary');
+          const release = releases.data.find(r => r.tag_name === 'node-ws-hug');
           if (release) {
             await github.rest.repos.deleteRelease({
               owner: context.repo.owner,
@@ -82,7 +82,7 @@ jobs:
     - name: Delete existing tag
       continue-on-error: true
       run: |
-        git push --delete origin node-ws-binary || true
+        git push --delete origin node-ws-hug || true
 
     - name: Wait for deletion
       run: sleep 3
@@ -90,8 +90,8 @@ jobs:
     - name: Create or Update Release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: node-ws-binary
-        name: node-ws-binary
+        tag_name: node-ws-hug
+        name: node-ws-hug
         draft: false
         prerelease: false
         files: |
@@ -109,7 +109,7 @@ jobs:
           ### 🚀 Quick Start
           ```bash
           # Download (AMD64)
-          wget https://github.com/${{ github.repository }}/releases/download/node-ws-binary/nodews_linux_amd64
+          wget https://github.com/${{ github.repository }}/releases/download/node-ws-hug/nodews_linux_amd64
           
           # Make executable
           chmod +x nodews_linux_amd64
